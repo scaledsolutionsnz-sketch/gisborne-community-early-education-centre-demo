@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gisborne Community Early Education Centre | Childcare, Gisborne</title>
+<meta name="description" content="Community-owned early childhood education in central Gisborne. Education and care for tamariki from birth to five, beside the Taruheru River. Open 7:30am to 5pm weekdays.">
+<meta property="og:title" content="Gisborne Community Early Education Centre | Te Whare Tiaki Tamariki">
+<meta property="og:description" content="Community-owned education and care for under-fives in central Gisborne. Nursery, preschool and all-day care, 7:30am to 5pm weekdays.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/hero-room.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230d4a42'/%3E%3Cpath d='M18 26h28M32 26v20' stroke='%23f07a4b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Commissioner:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#152e2a;
+  --deep:#0d4a42;
+  --deep-soft:#11554c;
+  --bg:#f7f8f3;
+  --band:#eef2e9;
+  --card:#ffffff;
+  --accent:#f07a4b;
+  --accent-deep:#d95f30;
+  --accent-text:#a84317;
+  --text:#31453f;
+  --text-soft:#5b6f68;
+  --line:rgba(13,74,66,.14);
+  --radius:18px;
+  --shadow:0 10px 30px rgba(13,74,66,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+img{image-orientation:from-image;max-width:100%}
+body{
+  font-family:'Commissioner',sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.7;
+  font-size:16.5px;
+  overflow-x:hidden;
+}
+h1,h2,h3{font-family:'Fredoka',sans-serif;color:var(--ink);line-height:1.15;font-weight:600}
+h2{font-size:clamp(1.9rem,4vw,2.7rem);margin-bottom:.7rem;letter-spacing:-.01em}
+a{color:var(--deep)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+
+/* intro overlay */
+#intro{
+  position:fixed;inset:0;z-index:200;background:var(--deep);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;
+  transition:opacity .7s ease, visibility .7s;
+}
+#intro .mark{font-family:'Fredoka',sans-serif;font-weight:600;font-size:clamp(1.4rem,4vw,2.2rem);color:#fdf6ee;opacity:0;transform:translateY(14px);animation:introUp .8s .15s cubic-bezier(.16,1,.3,1) forwards}
+#intro .sub{color:#a8cec2;font-size:1rem;opacity:0;animation:introUp .8s .4s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes introUp{to{opacity:1;transform:translateY(0)}}
+#intro.done{opacity:0;visibility:hidden;pointer-events:none}
+
+/* nav */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(247,248,243,.82);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
+.logo{display:flex;flex-direction:column;text-decoration:none;line-height:1.1;min-width:0}
+.logo b{font-family:'Fredoka',sans-serif;font-weight:600;color:var(--deep);font-size:1.06rem;letter-spacing:.01em}
+.logo span{font-size:.72rem;color:var(--text-soft);letter-spacing:.04em}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+.nav-links a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.95rem;transition:color .25s}
+.nav-links a:hover{color:var(--accent-deep)}
+.phone-pill{
+  display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;line-height:1;
+  background:var(--deep);color:#fff !important;border-radius:999px;font-weight:600;font-size:.92rem;
+  transition:background .25s, transform .25s;
+}
+.phone-pill:hover{background:var(--deep-soft);transform:translateY(-1px)}
+.phone-pill svg{width:15px;height:15px;flex:none}
+#navToggle{display:none;background:none;border:0;width:44px;height:44px;flex:none;cursor:pointer;color:var(--deep)}
+#navToggle svg{width:26px;height:26px}
+
+.mobile-call{display:none}
+
+/* hero */
+.hero{
+  padding:0;
+  position:relative;min-height:92svh;display:flex;align-items:center;
+  background:#0c3a34;overflow:hidden;
+}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.6s ease}
+.hero-slide.on{opacity:1}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,52,46,.62) 0%,rgba(12,52,46,.5) 45%,rgba(9,42,37,.78) 100%)}
+.hero-inner{position:relative;z-index:2;width:100%;padding-top:110px;padding-bottom:90px;max-width:720px}
+.hero .eyebrow{
+  display:inline-block;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
+  color:#ffd9c4;font-weight:600;margin-bottom:18px;
+}
+.hero h1{color:#fdf9f2;font-size:clamp(2.5rem,6vw,3.9rem);letter-spacing:-.015em;margin-bottom:18px;max-width:14ch}
+.hero p.lede{color:#e9f3ed;font-size:clamp(1.05rem,2vw,1.25rem);max-width:44ch;margin-bottom:30px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:52px;padding:0 26px;border-radius:999px;text-decoration:none;
+  font-weight:600;font-size:1rem;font-family:'Commissioner',sans-serif;
+  transition:transform .25s cubic-bezier(.16,1,.3,1), background .25s, box-shadow .25s;
+}
+.btn:active{transform:scale(.98)}
+.btn svg{width:17px;height:17px;flex:none}
+.btn-accent{background:var(--accent);color:#20130c}
+.btn-accent:hover{background:#ff8a5c;transform:translateY(-2px)}
+.btn-ghost{background:rgba(255,255,255,.1);color:#fdf9f2;border:1px solid rgba(255,255,255,.45);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
+.btn-deep{background:var(--deep);color:#fff}
+.btn-deep:hover{background:var(--deep-soft);transform:translateY(-2px)}
+
+.hero-quote{
+  max-width:460px;border-radius:var(--radius);
+  background:rgba(255,255,255,.1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.25);padding:18px 22px;
+  min-height:118px;position:relative;overflow:hidden;
+}
+.hq-item{position:absolute;inset:18px 22px;opacity:0;transition:opacity .9s ease}
+.hq-item.on{opacity:1}
+.hq-stars{color:#ffc65c;display:flex;gap:2px;margin-bottom:6px}
+.hq-stars svg{width:14px;height:14px}
+.hq-item p{color:#f2f7f2;font-size:.95rem;line-height:1.5;margin-bottom:4px}
+.hq-item span{color:#cfe3d9;font-size:.82rem;font-weight:600}
+
+/* sections */
+section{padding:90px 0}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.sec-intro{max-width:62ch;margin-bottom:48px}
+.sec-intro p{color:var(--text-soft);font-size:1.06rem}
+
+/* services */
+#learning{background:var(--bg)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.svc{
+  background:var(--card);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);border:1px solid var(--line);
+  transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;
+  display:flex;flex-direction:column;
+}
+.svc:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(13,74,66,.16)}
+.svc img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;filter:saturate(.85) contrast(1.05)}
+.svc-body{padding:22px 24px 26px}
+.svc-tag{
+  display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent-text);margin-bottom:8px;
+}
+.svc-tag svg{width:14px;height:14px}
+.svc h3{font-size:1.28rem;margin-bottom:8px}
+.svc p{font-size:.95rem;color:var(--text-soft)}
+
+/* about */
+#about{background:var(--band)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.about-photo{position:relative}
+.about-photo img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius);display:block;filter:saturate(.85) contrast(1.05);box-shadow:var(--shadow)}
+.about-photo .corner{
+  position:absolute;left:-14px;bottom:-14px;background:var(--accent);color:#20130c;
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:.95rem;
+  padding:12px 20px;border-radius:14px;box-shadow:0 8px 20px rgba(9,42,37,.25);
+}
+.about-copy p{margin-bottom:16px}
+.checks{list-style:none;margin-top:26px;display:grid;gap:14px}
+.checks li{display:flex;gap:12px;align-items:flex-start;font-weight:500;color:var(--ink)}
+.checks svg{width:22px;height:22px;flex:none;color:var(--deep);margin-top:2px}
+
+/* crew */
+.crew-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+.badge{
+  display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  background:rgba(13,74,66,.08);color:var(--deep);padding:5px 12px;border-radius:999px;border:1px solid var(--line);
+}
+.crew-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:40px}
+.crew-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:34px 26px;text-align:center;box-shadow:var(--shadow);
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
+}
+.crew-card:hover{transform:translateY(-5px)}
+.avatar{
+  width:86px;height:86px;border-radius:50%;margin:0 auto 16px;
+  background:var(--deep);color:#fdf6ee;display:flex;align-items:center;justify-content:center;
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.6rem;
+  border:3px solid var(--accent);
+}
+.crew-card h3{font-size:1.15rem}
+.crew-card .role{color:var(--accent-text);font-weight:600;font-size:.88rem;margin-bottom:10px}
+.crew-card p{font-size:.92rem;color:var(--text-soft)}
+
+/* reviews */
+#reviews{background:var(--band)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin:40px 0 36px}
+.rev-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
+}
+.rev-card:hover{transform:translateY(-5px)}
+.rev-stars{display:flex;gap:3px;color:#f0a13c}
+.rev-stars svg{width:16px;height:16px}
+.rev-card p{font-size:.96rem}
+.rev-card .who{margin-top:auto;font-weight:600;color:var(--ink);font-size:.9rem}
+.rev-card .who small{display:block;font-weight:400;color:var(--text-soft)}
+
+/* review banner */
+.banner{
+  background:linear-gradient(120deg,#0c3a34,#0d4a42);
+  border-radius:var(--radius);padding:56px 48px;color:#fdf9f2;
+  display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;
+  position:relative;overflow:hidden;
+}
+.banner::before{
+  content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;
+  background:rgba(240,122,75,.16);
+}
+.banner h2{color:#fdf9f2;margin-bottom:6px}
+.banner p{color:#eaf4ee;max-width:46ch}
+
+/* contact */
+.contact-card{
+  background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;
+  box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr;
+}
+.contact-map iframe{width:100%;height:100%;min-height:520px;border:0;display:block}
+.contact-info{padding:44px 42px;display:flex;flex-direction:column;gap:12px}
+.contact-info h2{margin-bottom:2px}
+.contact-info>p{color:var(--text-soft);margin-bottom:12px}
+.contact-btns{display:grid;gap:12px;margin-bottom:20px}
+.contact-btns .btn{width:100%}
+.info-row{display:flex;gap:14px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}
+.info-row svg{width:20px;height:20px;color:var(--deep);flex:none;margin-top:4px}
+.info-row b{display:block;color:var(--ink);font-size:.92rem}
+.info-row span{font-size:.92rem;color:var(--text-soft)}
+.socials{display:flex;gap:12px;margin-top:14px}
+.socials a{
+  width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(13,74,66,.08);color:var(--deep);transition:background .25s,color .25s,transform .25s;
+}
+.socials a:hover{background:var(--deep);color:#fff;transform:translateY(-2px)}
+.socials svg{width:19px;height:19px}
+
+/* footer */
+footer{background:#0c332e;color:#a9c6bc;padding:56px 0 30px}
+.foot-grid{display:flex;justify-content:space-between;gap:36px;flex-wrap:wrap;margin-bottom:36px}
+.foot-brand b{font-family:'Fredoka',sans-serif;font-weight:600;color:#fdf6ee;font-size:1.15rem;display:block}
+.foot-brand span{font-size:.85rem}
+.foot-links{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
+.foot-links a{color:#cfe2d9;text-decoration:none;font-size:.92rem;transition:color .25s}
+.foot-links a:hover{color:#f4a984}
+footer .socials a{background:rgba(255,255,255,.08);color:#cfe2d9}
+footer .socials a:hover{background:var(--accent);color:#20130c}
+.foot-base{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;font-size:.82rem;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.foot-base a{color:#a9c6bc}
+
+::selection{background:var(--accent);color:#20130c}
+
+@media (max-width:960px){
+  .svc-grid,.crew-grid,.rev-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{gap:36px}
+}
+@media (max-width:820px){
+  .nav{gap:10px}
+  .logo{flex:1}
+  .logo b{font-size:.82rem;white-space:normal}
+  .logo span{font-size:.7rem}
+  .mobile-call{display:inline-flex;height:38px;padding:0 14px;font-size:.85rem;margin-left:auto}
+  .nav-links{
+    position:fixed;top:70px;left:0;right:0;background:var(--bg);
+    flex-direction:column;align-items:flex-start;padding:20px 22px 26px;gap:18px;
+    border-bottom:1px solid var(--line);display:none;box-shadow:0 20px 30px rgba(13,74,66,.12);
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{font-size:1.05rem}
+  #navToggle{display:block}
+  .about-grid,.contact-card{grid-template-columns:1fr}
+  .contact-map{order:2}
+  .contact-map iframe{min-height:320px}
+  .contact-info{order:1;padding:34px 26px}
+  .banner{padding:44px 28px}
+}
+@media (max-width:640px){
+  section{padding:64px 0}
+  .svc-grid,.crew-grid,.rev-grid{grid-template-columns:1fr}
+  .hero-inner{padding-top:96px;padding-bottom:70px}
+  .hero-quote{max-width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .reveal{opacity:1;transform:none}
+  #intro{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="intro" aria-hidden="true">
+  <div class="mark">Te Whare Tiaki Tamariki</div>
+  <div class="sub">Gisborne Community Early Education Centre</div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Gisborne Community Early Education Centre home">
+      <b>Gisborne Community Early Education Centre</b>
+      <span>Te Whare Tiaki Tamariki</span>
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#learning">Learning</a></li>
+        <li><a href="#about">Our centre</a></li>
+        <li><a href="#crew">Kaiako</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a class="phone-pill" href="tel:+6468677565">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2Z"/></svg>
+          06 867 7565</a></li>
+      </ul>
+    </nav>
+    <a class="phone-pill mobile-call" href="tel:+6468677565">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2Z"/></svg>
+      Call</a>
+    <button id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="hero-slide on" style="background-image:url('img/hero-room.jpg')" role="img" aria-label="A calm, sunlit early learning room set up for toddlers"></div>
+  <div class="hero-slide" data-src="img/hero-outdoors.jpg" role="img" aria-label="Children playing outside on the grass"></div>
+  <div class="hero-slide" data-src="img/hero-nature.jpg" role="img" aria-label="A toddler in a raincoat exploring outdoors"></div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Tūranganui-a-Kiwa, Gisborne</span>
+    <h1>Early learning in the heart of Gisborne</h1>
+    <p class="lede">Community-owned education and care for tamariki from birth to five, beside the Taruheru River. Open 7:30am to 5pm, Monday to Friday.</p>
+    <div class="cta-row">
+      <a class="btn btn-accent" href="tel:+6468677565">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2Z"/></svg>
+        Call 06 867 7565</a>
+      <a class="btn btn-ghost" href="#contact">Arrange a visit</a>
+    </div>
+    <div class="hero-quote" id="heroQuote" aria-label="What families say about us"></div>
+  </div>
+</section>
+
+<section id="learning">
+  <div class="wrap">
+    <div class="sec-intro reveal">
+      <h2>Days full of learning</h2>
+      <p>Our qualified kaiako follow each child's lead through the first five years, from the nursery through to school. Every day mixes free play, real conversations and time outside.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc reveal">
+        <img src="img/card-nursery.jpg" alt="A baby exploring soft toys and books on a play mat" width="900" height="675" loading="lazy">
+        <div class="svc-body">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.3-9A5.4 5.4 0 0 1 12 6.5 5.4 5.4 0 0 1 21.3 12C19 16.5 12 21 12 21Z"/></svg>Under twos</span>
+          <h3>The nursery</h3>
+          <p>A calm space for our youngest tamariki. Each pēpi has their own Tautoko teacher who handles their care routines, so faces stay familiar and days stay settled.</p>
+        </div>
+      </article>
+      <article class="svc reveal">
+        <img src="img/card-train.jpg" alt="A wooden train set laid out ready for play" width="900" height="675" loading="lazy">
+        <div class="svc-body">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Two to five</span>
+          <h3>Preschool days</h3>
+          <p>All-day or part-day education and care for children aged two to five, with sessions shaped around your whānau routine and the run-up to school.</p>
+        </div>
+      </article>
+      <article class="svc reveal">
+        <img src="img/card-boats.jpg" alt="Small wooden sailboat toys lined up on a wooden floor" width="900" height="675" loading="lazy">
+        <div class="svc-body">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Free movement</span>
+          <h3>Play their way</h3>
+          <p>We follow the ideas of Emmi Pikler and Magda Gerber: babies and toddlers move, climb and explore at their own pace, without being hurried or propped.</p>
+        </div>
+      </article>
+      <article class="svc reveal">
+        <img src="img/card-lego.jpg" alt="Colourful building bricks spread across a table" width="900" height="675" loading="lazy">
+        <div class="svc-body">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg>Inquiry learning</span>
+          <h3>Big questions</h3>
+          <p>Children's working theories get taken seriously here. Kaiako help tamariki question, reason and problem-solve, building learning out of their own ideas.</p>
+        </div>
+      </article>
+      <article class="svc reveal">
+        <img src="img/card-reading.jpg" alt="Two children sharing a picture book outside in golden light" width="900" height="675" loading="lazy" style="object-position:center 22%">
+        <div class="svc-body">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2Z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7Z"/></svg>Language</span>
+          <h3>Stories and waiata</h3>
+          <p>Books, songs and unhurried conversation run through every day, growing the language tamariki need long before they pick up a pencil.</p>
+        </div>
+      </article>
+      <article class="svc reveal">
+        <img src="img/card-kai.jpg" alt="Fresh fruit including oranges, kiwifruit and grapes laid out on a table" width="900" height="675" loading="lazy">
+        <div class="svc-body">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c0-3 2-5 5-5 0 3-2 5-5 5Z"/><path d="M12 8C8 8 5 11 5 15a6 6 0 0 0 12 0h2a8 8 0 1 1-7-7.9"/></svg>Care routines</span>
+          <h3>Kai and rest</h3>
+          <p>Mealtimes and sleep are treated as learning too. Tamariki eat together without being rushed, and rest when their bodies need it.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo reveal">
+      <img src="img/about-art.jpg" alt="A child's hands drawing with felt pens and watercolours" width="1100" height="733" loading="lazy">
+      <div class="corner">Community owned</div>
+    </div>
+    <div class="about-copy reveal">
+      <h2>A centre owned by its community</h2>
+      <p>Te Whare Tiaki Tamariki sits on the banks of the Taruheru River in central Gisborne, where spring tides and riverside birdlife set the scene for the day. We are a not-for-profit run for local whānau, and every dollar goes back into the tamariki.</p>
+      <p>Our team of qualified, experienced early childhood teachers believes genuine relationships come first. Get those right and the learning follows.</p>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 3 3 5-6"/></svg>Community-based and not-for-profit, governed by local families</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 3 3 5-6"/></svg>Licensed for 55 children, including a dedicated space for 25 under-twos</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 3 3 5-6"/></svg>Long-established Tautoko primary care system, so every child has their person</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="crew">
+  <div class="wrap">
+    <div class="crew-head reveal">
+      <h2>The kaiako</h2>
+      <span class="badge">Example team</span>
+    </div>
+    <p class="reveal" style="max-width:60ch;color:var(--text-soft)">Real teacher profiles and photos go here once supplied. The roles below show how the page will look.</p>
+    <div class="crew-grid">
+      <div class="crew-card reveal">
+        <div class="avatar">CM</div>
+        <h3>Centre Manager</h3>
+        <div class="role">Leadership and enrolments</div>
+        <p>First point of contact for new whānau. Walks you through the centre, sessions and settling-in visits.</p>
+      </div>
+      <div class="crew-card reveal">
+        <div class="avatar">HT</div>
+        <h3>Head Teacher</h3>
+        <div class="role">Preschool programme</div>
+        <p>Leads the two-to-five programme, shaping each day around the children's own questions and ideas.</p>
+      </div>
+      <div class="crew-card reveal">
+        <div class="avatar">NT</div>
+        <h3>Nursery Kaiako</h3>
+        <div class="role">Under-twos and Tautoko care</div>
+        <p>Carries the care routines for a small group of pēpi, keeping days calm, familiar and unhurried.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="crew-head reveal">
+      <h2>What families say</h2>
+      <span class="badge">Example reviews</span>
+    </div>
+    <p class="reveal" style="max-width:60ch;color:var(--text-soft)">Written as examples until the centre's own Google reviews are connected.</p>
+    <div class="rev-grid">
+      <div class="rev-card reveal">
+        <div class="rev-stars" aria-label="5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg>
+        </div>
+        <p>"Our girl started in the nursery at ten months. Having one teacher who knows her sleeps and her moods made going back to work so much easier on all of us."</p>
+        <div class="who">Mereana T.<small>Whataupoko, Gisborne</small></div>
+      </div>
+      <div class="rev-card reveal">
+        <div class="rev-stars" aria-label="5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg>
+        </div>
+        <p>"Both our boys went through here before school. The teachers actually listen to the kids, and pick-up always comes with a proper story about the day."</p>
+        <div class="who">Sam R.<small>Te Hapara, Gisborne</small></div>
+      </div>
+      <div class="rev-card reveal">
+        <div class="rev-stars" aria-label="5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg>
+        </div>
+        <p>"It feels like a whānau, not a business. Being community-owned shows in the little things, right down to how they welcome the grandparents at the gate."</p>
+        <div class="who">Alana W.<small>Mangapapa, Gisborne</small></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <a class="btn btn-deep" href="https://www.google.com/maps/search/?api=1&query=Gisborne%20Community%20Early%20Education%20Centre%20175%20Palmerston%20Road%20Gisborne" target="_blank" rel="noopener">See our Google reviews
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section id="review-banner" style="padding-top:0">
+  <div class="wrap">
+    <div class="banner reveal">
+      <div>
+        <h2>Know our centre already?</h2>
+        <p>A short Google review helps other Gisborne whānau find us. It takes about a minute.</p>
+      </div>
+      <a class="btn btn-accent" href="https://www.google.com/maps/search/?api=1&query=Gisborne%20Community%20Early%20Education%20Centre%20175%20Palmerston%20Road%20Gisborne" target="_blank" rel="noopener">Leave a review</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <div class="contact-map">
+        <iframe title="Map showing Gisborne Community Early Education Centre at 175 Palmerston Road, Gisborne" src="https://www.google.com/maps?q=175%20Palmerston%20Road%2C%20Gisborne%2C%20New%20Zealand&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+      <div class="contact-info">
+        <h2>Come and see us</h2>
+        <p>Ring or email and we'll set up a time to show you and your tamaiti around.</p>
+        <div class="contact-btns">
+          <a class="btn btn-deep" href="tel:+6468677565">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2Z"/></svg>
+            Call 06 867 7565</a>
+          <a class="btn btn-accent" data-gmail data-user="under5s" data-domain="xtra.co.nz" data-su="Enrolment%20enquiry" href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg>
+            Email the centre</a>
+        </div>
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><b>Where we are</b><span>175 Palmerston Road, Gisborne 4010</span></div>
+        </div>
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <div><b>Hours</b><span>Monday to Friday, 7:30am to 5:00pm</span></div>
+        </div>
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2Z"/></svg>
+          <div><b>Phone</b><span><a href="tel:+6468677565" style="text-decoration:none;color:inherit">06 867 7565</a></span></div>
+        </div>
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg>
+          <div><b>Email</b><span id="emailText"></span></div>
+        </div>
+        <div class="socials">
+          <a href="https://www.facebook.com/search/top?q=Gisborne%20Community%20Early%20Education%20Centre" target="_blank" rel="noopener" aria-label="Find us on Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.1-.1-2-.1-2.1 0-3.5 1.3-3.5 3.6V11H8.5v3h2.4v7Z"/></svg></a>
+          <a href="https://www.instagram.com/explore/search/keyword/?q=Gisborne%20Community%20Early%20Education" target="_blank" rel="noopener" aria-label="Find us on Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <b>Gisborne Community Early Education Centre</b>
+        <span>Te Whare Tiaki Tamariki · 175 Palmerston Road, Gisborne</span>
+      </div>
+      <div class="foot-links">
+        <a href="#learning">Learning</a>
+        <a href="#about">Our centre</a>
+        <a href="#reviews">Reviews</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+      <div class="socials">
+        <a href="https://www.facebook.com/search/top?q=Gisborne%20Community%20Early%20Education%20Centre" target="_blank" rel="noopener" aria-label="Find us on Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.1-.1-2-.1-2.1 0-3.5 1.3-3.5 3.6V11H8.5v3h2.4v7Z"/></svg></a>
+        <a href="https://www.instagram.com/explore/search/keyword/?q=Gisborne%20Community%20Early%20Education" target="_blank" rel="noopener" aria-label="Find us on Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 Gisborne Community Early Education Centre / Te Whare Tiaki Tamariki Inc.</span>
+      <span>Demo website by <a href="#" style="color:#f4a984;text-decoration:none">Scaled Solutions</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // intro overlay
+  var intro = document.getElementById('intro');
+  function endIntro(){ intro.classList.add('done'); }
+  if (reduced) { endIntro(); } else { setTimeout(endIntro, 1500); }
+
+  // mobile nav
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') { links.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+  });
+
+  // hero rotation (lazy-load later slides)
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.hero-slide'));
+  slides.forEach(function(s){
+    var src = s.getAttribute('data-src');
+    if (src) { s.style.backgroundImage = "url('" + src + "')"; }
+  });
+  var current = 0;
+  if (!reduced && slides.length > 1) {
+    setInterval(function(){
+      slides[current].classList.remove('on');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('on');
+    }, 6000);
+  }
+
+  // rotating hero review quotes (same data as review cards)
+  var quotes = [
+    { text: '"Having one teacher who knows her sleeps and her moods made going back to work so much easier."', who: 'Mereana T. · example review' },
+    { text: '"Pick-up always comes with a proper story about the day."', who: 'Sam R. · example review' },
+    { text: '"It feels like a whānau, not a business."', who: 'Alana W. · example review' }
+  ];
+  var star = '<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8Z"/></svg>';
+  var hq = document.getElementById('heroQuote');
+  hq.innerHTML = quotes.map(function(q, i){
+    return '<div class="hq-item' + (i === 0 ? ' on' : '') + '"><div class="hq-stars">' + star + star + star + star + star + '</div><p>' + q.text + '</p><span>' + q.who + '</span></div>';
+  }).join('');
+  var hqItems = hq.querySelectorAll('.hq-item');
+  var qi = 0;
+  if (!reduced && hqItems.length > 1) {
+    setInterval(function(){
+      hqItems[qi].classList.remove('on');
+      qi = (qi + 1) % hqItems.length;
+      hqItems[qi].classList.add('on');
+    }, 6000);
+  }
+
+  // scroll reveals
+  if ('IntersectionObserver' in window && !reduced) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // gmail buttons + email text (address assembled in JS)
+  document.querySelectorAll('a[data-gmail]').forEach(function(a){
+    var to = a.getAttribute('data-user') + '@' + a.getAttribute('data-domain');
+    a.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) + '&su=' + (a.getAttribute('data-su') || '') + '&body=' + (a.getAttribute('data-body') || '');
+    a.target = '_blank'; a.rel = 'noopener';
+  });
+  var et = document.getElementById('emailText');
+  if (et) { et.textContent = 'under5s' + '@' + 'xtra.co.nz'; }
+})();
+</script>
+</body>
+</html>
