@@ -9,7 +9,8 @@
 <meta property="og:description" content="Community-owned education and care for under-fives in central Gisborne. Nursery, preschool and all-day care, 7:30am to 5pm weekdays.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="img/hero-room.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230d4a42'/%3E%3Cpath d='M18 26h28M32 26v20' stroke='%23f07a4b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Commissioner:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -65,7 +66,9 @@ header{
   border-bottom:1px solid var(--line);
 }
 .nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
-.logo{display:flex;flex-direction:column;text-decoration:none;line-height:1.1;min-width:0}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;line-height:1.1;min-width:0}
+.logo-mark{width:46px;height:46px;border-radius:10px;display:block;flex-shrink:0}
+.logo-type{display:flex;flex-direction:column;min-width:0}
 .logo b{font-family:'Fredoka',sans-serif;font-weight:600;color:var(--deep);font-size:1.06rem;letter-spacing:.01em}
 .logo span{font-size:.72rem;color:var(--text-soft);letter-spacing:.04em}
 .nav-links{display:flex;align-items:center;gap:26px;list-style:none}
@@ -248,6 +251,7 @@ section{padding:90px 0}
 /* footer */
 footer{background:#0c332e;color:#a9c6bc;padding:56px 0 30px}
 .foot-grid{display:flex;justify-content:space-between;gap:36px;flex-wrap:wrap;margin-bottom:36px}
+.foot-logo{width:190px;height:auto;border-radius:12px;margin-bottom:16px;display:block}
 .foot-brand b{font-family:'Fredoka',sans-serif;font-weight:600;color:#fdf6ee;font-size:1.15rem;display:block}
 .foot-brand span{font-size:.85rem}
 .foot-links{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
@@ -308,8 +312,11 @@ footer .socials a:hover{background:var(--accent);color:#20130c}
 <header>
   <div class="wrap nav">
     <a class="logo" href="#top" aria-label="Gisborne Community Early Education Centre home">
-      <b>Gisborne Community Early Education Centre</b>
-      <span>Te Whare Tiaki Tamariki</span>
+      <img class="logo-mark" src="img/logo-mark.png" alt="" width="512" height="512">
+      <span class="logo-type">
+        <b>Gisborne Community Early Education Centre</b>
+        <span>Te Whare Tiaki Tamariki</span>
+      </span>
     </a>
     <nav aria-label="Main">
       <ul class="nav-links" id="navLinks">
@@ -558,6 +565,7 @@ footer .socials a:hover{background:var(--accent);color:#20130c}
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
+        <img class="foot-logo" src="img/logo-full.png" alt="Gisborne Community Early Education Centre, Te Whare Tiaki Tamariki Inc" width="900" height="675" loading="lazy">
         <b>Gisborne Community Early Education Centre</b>
         <span>Te Whare Tiaki Tamariki · 175 Palmerston Road, Gisborne</span>
       </div>
